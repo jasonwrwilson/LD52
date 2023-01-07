@@ -317,78 +317,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &884768815 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 828582025670028237, guid: fb99fc382ff82dd43a1652fbc6112966,
-    type: 3}
-  m_PrefabInstance: {fileID: 828582026015239138}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &884768816 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 828582025670028242, guid: fb99fc382ff82dd43a1652fbc6112966,
     type: 3}
   m_PrefabInstance: {fileID: 828582026015239138}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884768815}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5659fb6e1de8fc4886255b441d3e0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &884768818
+--- !u!114 &884768818 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 884768818, guid: fb99fc382ff82dd43a1652fbc6112966,
+    type: 3}
+  m_PrefabInstance: {fileID: 828582026015239138}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884768815}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7e39ef2ace1d243a6cf036e8cbd729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHarvestCountChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 470268594}
-        m_MethodName: UpdateHarvestCount
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  startingHarvestAmount: 0
---- !u!114 &884768819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884768815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 575256a2861542d4ba1f19ec75c19e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySpawnTime: 2
---- !u!114 &884768820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884768815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f9999a55697d8469e295dcf6258724, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 3209733628850648574, guid: 6f65c7f38a5cb1040b9f241b5c5ce211, type: 3}
 --- !u!1 &1022998141
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,20 +513,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 884768818, guid: fb99fc382ff82dd43a1652fbc6112966, type: 3}
+      propertyPath: onHarvestCountChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 470268594}
     - target: {fileID: 828582025670028237, guid: fb99fc382ff82dd43a1652fbc6112966,
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 828582025670028242, guid: fb99fc382ff82dd43a1652fbc6112966,
-        type: 3}
-      propertyPath: fieldWidth
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 828582025670028242, guid: fb99fc382ff82dd43a1652fbc6112966,
-        type: 3}
-      propertyPath: fieldHeight
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 828582025670028243, guid: fb99fc382ff82dd43a1652fbc6112966,
         type: 3}

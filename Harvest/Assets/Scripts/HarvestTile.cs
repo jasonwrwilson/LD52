@@ -20,6 +20,7 @@ public class HarvestTile : MonoBehaviour
     [SerializeField] private SpriteRenderer growthSprite;
 
     private InventoryManager inventoryManager;
+    private FieldManager fieldManager;
     
     // Start is called before the first frame update
     void Start()
@@ -54,24 +55,24 @@ public class HarvestTile : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        highlight.SetActive(true);
+        //highlight.SetActive(true);
     }
 
     private void OnMouseExit()
     {
-        highlight.SetActive(false);
+        //highlight.SetActive(false);
     }
 
     private void OnMouseDown()
     {
-        if (ReadyForPlanting())
+        /*if (ReadyForPlanting())
         {
             PlantCrop();
         }
         else if (ReadyForHarvest())
         {
             Harvest();
-        }
+        }*/
     }
     private void SetGrowthStage(int gs)
     {
@@ -100,14 +101,19 @@ public class HarvestTile : MonoBehaviour
         inventoryManager = inv;
     }
 
+    public void SetFieldManager(FieldManager field)
+    {
+        fieldManager = field;
+    }
+
     public void SetHealth(float h)
     {
         health = h;
         growthSprite.color = Color.Lerp(unhealthyColor, healthyColor, health / maxHealth);
 
-        if (health == 0)
+        if (health <= 0)
         {
-            SetGrowthStage(0);
+            Death();
         }
     }
 
@@ -122,6 +128,7 @@ public class HarvestTile : MonoBehaviour
         {
             inventoryManager.AddHarvestAmount(10);
             SetGrowthStage(0);
+            fieldManager.CropCleared();
         }
     }
 
@@ -137,11 +144,18 @@ public class HarvestTile : MonoBehaviour
             SetHealth(maxHealth);
             SetGrowthStage(1);
             currentStageTimer = growthTime / (growthStageImages.Length + 1);
+            fieldManager.CropPlanted();
         }
     }
 
     public bool ReadyForPlanting()
     {
         return growthStage == 0;
+    }
+
+    private void Death()
+    {
+        SetGrowthStage(0);
+        fieldManager.CropCleared();
     }
 }
