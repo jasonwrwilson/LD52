@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b79748b1b430da4f8acaa62f0546982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpawnTime: 1
+  scytheSpawnTime: 5
+  startingScytheCount: 2
   projectileOffset: {x: 0, y: 0}
 --- !u!114 &1844696139563500119
 MonoBehaviour:
@@ -113,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefabs:
   - {fileID: -3130229243517969542, guid: 12fa3ac9a5083fa48bfdff105153d9e1, type: 3}
+  - {fileID: 3090481433716488433, guid: 8a039a639934dbd4aa9e3e6222d5c569, type: 3}
 --- !u!114 &2161894649493319015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,4 +140,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTime: 1
-  hopheight: 0.5
+  hopHeight: 0
+  fieldManager: {fileID: 0}
