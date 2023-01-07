@@ -8,6 +8,8 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField] private float projectileSpawnTime;
     private float nextProjectileSpawnTime;
 
+    [SerializeField] private Vector2 projectileOffset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,21 +26,32 @@ public class ProjectileManager : MonoBehaviour
             nextProjectileSpawnTime -= Time.deltaTime;
             if (nextProjectileSpawnTime <= 0)
             {
-                //spawn bullets
-                ProjectileBehaviour projectile = projectilePool.GetProjectile(0, new Vector3(-0.5f, 0.5f, 0));
+
 
                 //random direction
                 /*float angleInRadians = Random.Range(0, 360) * Mathf.Deg2Rad;
                 projectile.SetDirection(new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)));*/
+                //FireBullet();
 
-                //toward mouse pointer
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mouseDirection = new Vector2(mousePosition.x, mousePosition.y);
-                mouseDirection.Normalize();
-                projectile.SetDirection(mouseDirection);
 
                 nextProjectileSpawnTime = projectileSpawnTime;
             }
         }
+    }
+
+    public void FireBullet()
+    {
+        //fire position
+        Vector3 scarecrowPosition = gameObject.transform.position;
+        Vector3 firePosition = new Vector3(scarecrowPosition.x + projectileOffset.x, scarecrowPosition.y + projectileOffset.y, 0);
+        
+        //spawn bullets
+        ProjectileBehaviour projectile = projectilePool.GetProjectile(0, firePosition);
+
+        //toward mouse pointer
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mouseDirection = new Vector2(mousePosition.x - firePosition.x, mousePosition.y - firePosition.y);
+        mouseDirection.Normalize();
+        projectile.SetDirection(mouseDirection);
     }
 }

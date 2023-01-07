@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5096054816968808249}
   - component: {fileID: 3128465675308091655}
   - component: {fileID: 1844696139563500119}
+  - component: {fileID: 2161894649493319015}
+  - component: {fileID: -2833066196495929021}
   m_Layer: 0
   m_Name: Scarecrow
   m_TagString: Untagged
@@ -96,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpawnTime: 1
+  projectileOffset: {x: 0, y: 0}
 --- !u!114 &1844696139563500119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +113,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefabs:
   - {fileID: -3130229243517969542, guid: 12fa3ac9a5083fa48bfdff105153d9e1, type: 3}
+--- !u!114 &2161894649493319015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096054816968808250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3048a2f012204c44aa1c3ada6fafaee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2833066196495929021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096054816968808250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3420e2be75f4264b96950c205aac235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 1
+  hopheight: 0.5

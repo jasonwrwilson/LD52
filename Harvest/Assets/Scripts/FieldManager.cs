@@ -6,6 +6,7 @@ public class FieldManager : MonoBehaviour
 {
     [SerializeField] private int fieldWidth, fieldHeight;
     [SerializeField] private HarvestTile tilePrefab;
+    private Vector2 scarecrowTileLocation;
 
     private HarvestTile[,] tiles;
     
@@ -30,15 +31,19 @@ public class FieldManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HarvestTile harvestTile = GetTileAt(scarecrowTileLocation.x, scarecrowTileLocation.y);
+        if (harvestTile != null && harvestTile.ReadyForHarvest())
+        {
+            harvestTile.Harvest();
+        }
     }
 
     public HarvestTile GetTileAt(float x, float y)
     {
         int convertedX = Mathf.RoundToInt(x + fieldWidth / 2);
-        int convertedY = Mathf.RoundToInt(y + fieldWidth / 2);
+        int convertedY = Mathf.RoundToInt(y + fieldHeight / 2);
 
-        if (convertedX >= 0 && convertedX < fieldWidth - 1 && convertedY >= 0 && convertedY <= fieldHeight - 1)
+        if (ValidTileLocation(convertedX, convertedY))
         {
             return tiles[convertedX, convertedY];
         }
@@ -46,5 +51,47 @@ public class FieldManager : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public void RegisterScarecrowLocation(float x, float y)
+    {
+        scarecrowTileLocation = new Vector2(x, y);
+    }
+
+    public bool CanMoveRight()
+    {
+        int convertedX = Mathf.RoundToInt(scarecrowTileLocation.x + fieldWidth / 2 - 1);
+        int convertedY = Mathf.RoundToInt(scarecrowTileLocation.y + fieldHeight / 2);
+
+        return ValidTileLocation(convertedX, convertedY);
+    }
+
+    public bool CanMoveLeft()
+    {
+        int convertedX = Mathf.RoundToInt(scarecrowTileLocation.x + fieldWidth / 2 + 1);
+        int convertedY = Mathf.RoundToInt(scarecrowTileLocation.y + fieldHeight / 2);
+
+        return ValidTileLocation(convertedX, convertedY);
+    }
+
+    public bool CanMoveUp()
+    {
+        int convertedX = Mathf.RoundToInt(scarecrowTileLocation.x + fieldWidth / 2);
+        int convertedY = Mathf.RoundToInt(scarecrowTileLocation.y + fieldHeight / 2 + 1);
+
+        return ValidTileLocation(convertedX, convertedY);
+    }
+
+    public bool CanMoveDown()
+    {
+        int convertedX = Mathf.RoundToInt(scarecrowTileLocation.x + fieldWidth / 2);
+        int convertedY = Mathf.RoundToInt(scarecrowTileLocation.y + fieldHeight / 2 - 1);
+
+        return ValidTileLocation(convertedX, convertedY);
+    }
+
+    private bool ValidTileLocation(int x, int y)
+    {
+        return x >= 0 && x <= fieldWidth - 1 && y >= 0 && y <= fieldHeight - 1;
     }
 }

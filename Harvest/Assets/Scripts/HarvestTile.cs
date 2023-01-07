@@ -64,16 +64,13 @@ public class HarvestTile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (growthStage  == 0)
+        if (ReadyForPlanting())
         {
-            SetHealth(maxHealth);
-            SetGrowthStage(1);
-            currentStageTimer = growthTime / (growthStageImages.Length + 1);
+            PlantCrop();
         }
-        else if (growthStage == growthStageImages.Length)
+        else if (ReadyForHarvest())
         {
-            inventoryManager.AddHarvestAmount(10);
-            SetGrowthStage(0);
+            Harvest();
         }
     }
     private void SetGrowthStage(int gs)
@@ -117,5 +114,34 @@ public class HarvestTile : MonoBehaviour
     public void TakeDamage(float d)
     {
         SetHealth(Mathf.Max(health - d, 0));
+    }
+
+    public void Harvest()
+    {
+        if (ReadyForHarvest())
+        {
+            inventoryManager.AddHarvestAmount(10);
+            SetGrowthStage(0);
+        }
+    }
+
+    public bool ReadyForHarvest()
+    {
+        return growthStage == growthStageImages.Length;
+    }
+
+    public void PlantCrop()
+    {
+        if (ReadyForPlanting())
+        {
+            SetHealth(maxHealth);
+            SetGrowthStage(1);
+            currentStageTimer = growthTime / (growthStageImages.Length + 1);
+        }
+    }
+
+    public bool ReadyForPlanting()
+    {
+        return growthStage == 0;
     }
 }
