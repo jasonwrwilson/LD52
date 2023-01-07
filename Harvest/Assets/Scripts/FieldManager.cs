@@ -180,6 +180,6 @@ public class FieldManager : MonoBehaviour
 
     public bool InWaterRange(Vector2 pos)
     {
-        return Vector2.SqrMagnitude(pos - scarecrowTileLocation) < 1 * 1;
+        return Vector2.SqrMagnitude(pos - scarecrowTileLocation) < 2 * 2;
     }
 }

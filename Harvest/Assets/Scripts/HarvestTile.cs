@@ -23,6 +23,7 @@ public class HarvestTile : MonoBehaviour
     private FieldManager fieldManager;
 
     [SerializeField] private GameObject rainEffect;
+    [SerializeField] private GameObject sparkleEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -96,10 +97,20 @@ public class HarvestTile : MonoBehaviour
             {
                 growthSprite.gameObject.SetActive(true);
                 growthSprite.sprite = growthStageImages[growthStage - 1];
+
             }
             else
             {
                 growthSprite.gameObject.SetActive(false);
+            }
+
+            if (gs == growthStageImages.Length)
+            {
+                sparkleEffect.SetActive(true);
+            }
+            else
+            {
+                sparkleEffect.SetActive(false);
             }
         }
     }
