@@ -28,7 +28,7 @@ public class EnemyManager : MonoBehaviour
                 //spawn enemy
                 float angleInRadians = Random.Range(0, 360) * Mathf.Deg2Rad;
 
-                enemyPool.GetEnemy(0, new Vector3(Mathf.Cos(angleInRadians) * 10, Mathf.Sin(angleInRadians) * 10, 0));
+                enemyPool.GetEnemy(1, new Vector3(Mathf.Cos(angleInRadians) * 10, Mathf.Sin(angleInRadians) * 10, 0));
 
                 nextEnemySpawnTime = enemySpawnTime;
             }

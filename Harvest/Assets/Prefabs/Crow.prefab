@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3209733628850648574}
   - component: {fileID: 1003885457990883141}
   - component: {fileID: 2509874073373952547}
+  - component: {fileID: 4606873267732795148}
   m_Layer: 8
   m_Name: Crow
   m_TagString: Untagged
@@ -96,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04f074c4aef4e64badf422b38ed9ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteAnimator: {fileID: 4606873267732795148}
   speed: 1
   attackRate: 3
   damage: 5
@@ -137,3 +139,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!95 &4606873267732795148
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2970281866904867275}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24ac32bfeeb424c4589bd214dd8b6073, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

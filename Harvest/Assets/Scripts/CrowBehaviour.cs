@@ -20,6 +20,9 @@ public class CrowBehaviour : EnemyBehaviour
         targetTile = enemyManager.GetTileAt(pos.x, pos.y);
         if (targetTile != null && targetTile.GetGrowthStage() > 0)
         {
+            spriteAnimator.SetTrigger("Idling");
+            gameObject.GetComponent<SpriteRenderer>().flipY = false;
+
             //attack
             attackTimer -= Time.deltaTime;
             if (attackTimer <= 0)
@@ -30,6 +33,7 @@ public class CrowBehaviour : EnemyBehaviour
         }
         else
         {
+            spriteAnimator.SetTrigger("Moving");
             attackTimer = attackRate;
 
             Vector2 dir;

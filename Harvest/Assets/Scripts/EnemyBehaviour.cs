@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    [SerializeField] protected Animator spriteAnimator;
     [SerializeField] protected float speed;
     [SerializeField] protected float attackRate;
     protected float attackTimer;
