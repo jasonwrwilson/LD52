@@ -9,7 +9,7 @@ public class HarvestTile : MonoBehaviour
 
     [SerializeField] private float maxHealth;
     private float health;
-    
+
     [SerializeField] private GameObject highlight;
     [SerializeField] private float growthTime;
     private float currentStageTimer;
@@ -21,7 +21,7 @@ public class HarvestTile : MonoBehaviour
 
     private InventoryManager inventoryManager;
     private FieldManager fieldManager;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -157,5 +157,10 @@ public class HarvestTile : MonoBehaviour
     {
         SetGrowthStage(0);
         fieldManager.CropCleared();
+    }
+
+    public bool HasCrop()
+    {
+        return growthStage > 0;
     }
 }

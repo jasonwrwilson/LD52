@@ -146,4 +146,35 @@ public class FieldManager : MonoBehaviour
             cropsGrowing = maxCropsGrowing;
         }
     }
+
+    public HarvestTile FindClosestCrop(Vector3 pos)
+    {
+        HarvestTile closestCropTile = null;
+        float closestSqDistance = 0;
+        for (int x = 0; x < fieldWidth; x++)
+        {
+            for (int y = 0; y < fieldHeight; y++)
+            {
+                if (tiles[x, y].HasCrop())
+                {
+                    if (closestCropTile == null)
+                    {
+                        closestCropTile = tiles[x, y];
+                        closestSqDistance = Vector3.SqrMagnitude(tiles[x, y].gameObject.transform.position - pos);
+                    }
+                    else
+                    {
+                        float sqDistance = Vector3.SqrMagnitude(tiles[x, y].gameObject.transform.position - pos);
+                        if (sqDistance < closestSqDistance)
+                        {
+                            closestCropTile = tiles[x, y];
+                            closestSqDistance = sqDistance;
+                        }
+                    }
+                }
+            }
+        }
+
+        return closestCropTile;
+    }
 }

@@ -32,7 +32,20 @@ public class CrowBehaviour : EnemyBehaviour
         {
             attackTimer = attackRate;
 
-            Vector2 dir = new Vector2(-gameObject.transform.position.x - 0.5f, -gameObject.transform.position.y + 0.5f);
+            Vector2 dir;
+
+            HarvestTile closestCropTile = enemyManager.FindClosestCrop(gameObject.transform.position);
+            if (closestCropTile != null)
+            {
+                //fly toward closest crop
+                dir = new Vector2(closestCropTile.gameObject.transform.position.x - gameObject.transform.position.x, closestCropTile.gameObject.transform.position.y - gameObject.transform.position.y);
+            }
+            else
+            {
+                //fly toward centre
+                dir = new Vector2(-gameObject.transform.position.x, -gameObject.transform.position.y);
+            }
+
             dir.Normalize();
 
             gameObject.GetComponent<SpriteRenderer>().flipX = dir.x > 0;

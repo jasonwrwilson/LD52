@@ -39,4 +39,9 @@ public class EnemyManager : MonoBehaviour
     {
         return gameObject.GetComponent<FieldManager>().GetTileAt(x, y);
     }
+
+    public HarvestTile FindClosestCrop(Vector3 pos)
+    {
+        return gameObject.GetComponent<FieldManager>().FindClosestCrop(pos);
+    }
 }
