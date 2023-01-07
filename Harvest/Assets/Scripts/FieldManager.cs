@@ -177,4 +177,9 @@ public class FieldManager : MonoBehaviour
 
         return closestCropTile;
     }
+
+    public bool InWaterRange(Vector2 pos)
+    {
+        return Vector2.SqrMagnitude(pos - scarecrowTileLocation) < 1 * 1;
+    }
 }

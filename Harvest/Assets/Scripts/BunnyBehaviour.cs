@@ -38,7 +38,7 @@ public class BunnyBehaviour : EnemyBehaviour
                 remainingTimeBetweenStops = Random.Range(minBetweenStopsTime, maxBetweenStopsTime);
             }
         }        
-        else if (targetTile != null && targetTile.GetGrowthStage() > 0)
+        else if (targetTile != null && targetTile.HasCrop())
         {
             spriteAnimator.SetTrigger("Idling");
 
@@ -85,17 +85,6 @@ public class BunnyBehaviour : EnemyBehaviour
                 remainingTimeBetweenStops = 0;
                 remainingStopTime = stopTime;
             }
-        }
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger!!");
-        HarvestTile harvestTile = other.gameObject.GetComponent<HarvestTile>();
-
-        if (harvestTile != null && harvestTile.GetGrowthStage() > 0)
-        {
-            targetTile = harvestTile;
         }
     }
 }

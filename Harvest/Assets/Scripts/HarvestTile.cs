@@ -22,6 +22,8 @@ public class HarvestTile : MonoBehaviour
     private InventoryManager inventoryManager;
     private FieldManager fieldManager;
 
+    [SerializeField] private GameObject rainEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,20 @@ public class HarvestTile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float rainBonus = 1.0f;
+        if (fieldManager.InWaterRange(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)))
+        {
+            rainEffect.SetActive(true);
+            rainBonus = 2.0f;
+        }
+        else
+        {
+            rainEffect.SetActive(false);
+        }
+        
         if (growthStage > 0 && growthStage <= growthStageImages.Length && currentStageTimer > 0)
         {
-            currentStageTimer -= Time.deltaTime;
+            currentStageTimer -= Time.deltaTime * rainBonus;
             if (currentStageTimer <= 0)
             {
                 SetGrowthStage(growthStage + 1);

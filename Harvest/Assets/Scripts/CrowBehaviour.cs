@@ -18,7 +18,7 @@ public class CrowBehaviour : EnemyBehaviour
         Vector3 pos = gameObject.transform.position;
 
         targetTile = enemyManager.GetTileAt(pos.x, pos.y);
-        if (targetTile != null && targetTile.GetGrowthStage() > 0)
+        if (targetTile != null && targetTile.HasCrop())
         {
             spriteAnimator.SetTrigger("Idling");
             gameObject.GetComponent<SpriteRenderer>().flipY = false;
@@ -59,17 +59,6 @@ public class CrowBehaviour : EnemyBehaviour
             pos.y = pos.y + dir.y * speed * Time.deltaTime;
 
             gameObject.transform.position = pos;
-        }
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger!!");
-        HarvestTile harvestTile = other.gameObject.GetComponent<HarvestTile>();
-
-        if (harvestTile != null && harvestTile.GetGrowthStage() > 0)
-        {
-            targetTile = harvestTile;
         }
     }
 }
