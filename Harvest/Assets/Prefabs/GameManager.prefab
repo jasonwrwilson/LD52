@@ -98,14 +98,14 @@ MonoBehaviour:
   - Increase the range of the Sprinkler
   - Regain a Crop which has been lost.
   upgradeIcons:
-  - {fileID: 21300000, guid: e112fd1b02fa06e4297e6811ccbb5ab6, type: 3}
-  - {fileID: 21300000, guid: 02dcdf81f7c84eb48b0632961cba6c99, type: 3}
-  - {fileID: 21300000, guid: caf343d8145cea1479f5a8ad7d4e176d, type: 3}
-  - {fileID: 21300000, guid: e112fd1b02fa06e4297e6811ccbb5ab6, type: 3}
-  - {fileID: 21300000, guid: fcac4d21c90633b41bba762a7af19323, type: 3}
-  - {fileID: 21300000, guid: fcac4d21c90633b41bba762a7af19323, type: 3}
-  - {fileID: 21300000, guid: fcac4d21c90633b41bba762a7af19323, type: 3}
-  - {fileID: 21300000, guid: fcac4d21c90633b41bba762a7af19323, type: 3}
+  - {fileID: 21300000, guid: eac10a69cca2b994c8b2b2be23abe3ea, type: 3}
+  - {fileID: 21300000, guid: b48a3c0ef4144f1498c78d16adeb3590, type: 3}
+  - {fileID: 21300000, guid: 4f01dd2743b28ee448193069ab1ca5ca, type: 3}
+  - {fileID: 21300000, guid: c2337761b5f092d40983f828c18634e1, type: 3}
+  - {fileID: 21300000, guid: 0b0184188ee911243971a39f9a7af859, type: 3}
+  - {fileID: 21300000, guid: 74942e97131d45c4fb58d632bc974da2, type: 3}
+  - {fileID: 21300000, guid: 0e81693659efd0f4aa7e9e18c2216ac8, type: 3}
+  - {fileID: 21300000, guid: 25a8149479980c5419b36d87d602af92, type: 3}
   upgradeStartingLevels: 0100000000000000000000000000000000000000000000000000000000000000
   upgradePrerequisite: 0000000000000000000000000000000003000000030000000000000000000000
   harvestAwardedSound: {fileID: 9017767373662853777}

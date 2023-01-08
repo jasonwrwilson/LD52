@@ -31,7 +31,7 @@ public class InventoryManager : MonoBehaviour
     private float stoneDamageBonusImprovement = 0.5f;
     private float stoneSpeedBonus = 1.0f;
     private float stoneSpeedImprovement = 0.5f;
-    private int startingStoneSpreadCount = 2;
+    private int startingStoneSpreadCount = 0;
     private int stoneSpreadCountImprovement = 1;
     private int startingScytheCount = 2;
     private int scytheCountImprovement = 1;
@@ -39,7 +39,7 @@ public class InventoryManager : MonoBehaviour
     private float scytheDamageBonusImprovement = 0.5f;
     private float scytheSpeedBonus = 1.0f;
     private float scytheSpeedBonusImprovement = 0.5f;
-    private float startingSprinklerRange = 0.0f;
+    private float startingSprinklerRange = 1.0f;
     private float sprinklerRangeImprovement = 1.0f;
 
     [SerializeField] private AudioSource harvestAwardedSound;
@@ -270,7 +270,7 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            return 5;
+            return 0;
         }
     }
 
