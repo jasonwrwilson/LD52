@@ -181,6 +181,7 @@ public class HarvestTile : MonoBehaviour
     {
         SetGrowthStage(0);
         fieldManager.CropCleared();
+        inventoryManager.LoseLife(1);
     }
 
     public bool HasCrop()
