@@ -41,6 +41,8 @@ public class InventoryManager : MonoBehaviour
     private float scytheSpeedBonusImprovement = 0.5f;
     private float startingSprinklerRange = 0.0f;
     private float sprinklerRangeImprovement = 1.0f;
+
+    [SerializeField] private AudioSource harvestAwardedSound;
     
     // Start is called before the first frame update
     void Start()
@@ -94,6 +96,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddHarvestAmount(int h)
     {
+        harvestAwardedSound.Play();
         SetHarvestAmount(harvestAmount + h);
     }
 
@@ -267,7 +270,7 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            return 0;
+            return 5;
         }
     }
 

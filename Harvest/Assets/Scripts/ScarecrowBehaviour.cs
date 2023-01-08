@@ -13,6 +13,8 @@ public class ScarecrowBehaviour : MonoBehaviour
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private GameObject sprinkler;
     private bool sprinklerActive = false;
+
+    [SerializeField] private AudioSource jumpSound;
     
     // Start is called before the first frame update
     void Start()
@@ -58,6 +60,7 @@ public class ScarecrowBehaviour : MonoBehaviour
             targetPosition = startingPosition;
             targetPosition.x -= 1;
             remainingMoveTime = moveTime;
+            PlayJumpSound();
         }
     }
 
@@ -69,6 +72,7 @@ public class ScarecrowBehaviour : MonoBehaviour
             targetPosition = startingPosition;
             targetPosition.x += 1;
             remainingMoveTime = moveTime;
+            PlayJumpSound();
         }
     }
 
@@ -80,6 +84,7 @@ public class ScarecrowBehaviour : MonoBehaviour
             targetPosition = startingPosition;
             targetPosition.y += 1;
             remainingMoveTime = moveTime;
+            PlayJumpSound();
         }
     }
 
@@ -91,6 +96,7 @@ public class ScarecrowBehaviour : MonoBehaviour
             targetPosition = startingPosition;
             targetPosition.y -= 1;
             remainingMoveTime = moveTime;
+            PlayJumpSound();
         }
     }
 
@@ -102,5 +108,10 @@ public class ScarecrowBehaviour : MonoBehaviour
     public InventoryManager GetInventoryManager()
     {
         return inventoryManager;
+    }
+
+    private void PlayJumpSound()
+    {
+        jumpSound.Play();
     }
 }

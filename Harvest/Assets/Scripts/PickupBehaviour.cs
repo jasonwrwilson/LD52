@@ -13,6 +13,11 @@ public class PickupBehaviour : MonoBehaviour
     protected Vector3 startingPosition;
     protected PickupManager pickupManager;
 
+    [SerializeField] protected AudioSource awardSound;
+
+    [SerializeField] protected float deathDelay;
+    protected float remainingDeathDelay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +27,15 @@ public class PickupBehaviour : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (remainingTravelTime > 0 && targetScarecrow != null)
+        if (remainingDeathDelay > 0)
+        {
+            remainingDeathDelay -= Time.deltaTime;
+            if ( remainingDeathDelay <= 0)
+            {
+                KillProjectile();
+            }
+        }        
+        else if (remainingTravelTime > 0 && targetScarecrow != null)
         {
             remainingTravelTime -= Time.deltaTime;
 
@@ -81,7 +94,13 @@ public class PickupBehaviour : MonoBehaviour
     protected virtual void AwardPickup()
     {
         Debug.Log("Award Pickup!");
-        KillProjectile();
+        awardSound.Play();
+        remainingDeathDelay = deathDelay;
+    }
+
+    public void ResetDeathDelay()
+    {
+        remainingDeathDelay = 0;
     }
 
     

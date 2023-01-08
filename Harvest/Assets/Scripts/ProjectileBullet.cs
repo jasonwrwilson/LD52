@@ -14,6 +14,11 @@ public class ProjectileBullet : ProjectileBehaviour
     void Update()
     {
         base.Update();
+
+        if (isDead)
+        {
+            return;
+        }
         
         Vector3 pos = gameObject.transform.position;
         pos.x = pos.x + direction.x * speed * Time.deltaTime * GetSpeedBonus();

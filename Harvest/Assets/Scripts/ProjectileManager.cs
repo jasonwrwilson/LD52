@@ -70,6 +70,8 @@ public class ProjectileManager : MonoBehaviour
             mouseDirection.Normalize();
             projectile.SetDirection(mouseDirection);
 
+            projectile.PlayFireSound();
+
             if (inventoryManager.GetStoneSpreadCount() > 0)
             {
                 for (int i = 0; i < inventoryManager.GetStoneSpreadCount(); i++)
@@ -110,6 +112,11 @@ public class ProjectileManager : MonoBehaviour
             //random direction
             float angleInRadians = (randomAngle + i * (360 / inventoryManager.GetScytheCount())) * Mathf.Deg2Rad;
             projectile.SetDirection(new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)));
+
+            if (i==0)
+            {
+                projectile.PlayFireSound();
+            }
         }
     }
 }

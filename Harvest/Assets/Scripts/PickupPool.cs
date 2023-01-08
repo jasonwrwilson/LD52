@@ -43,6 +43,7 @@ public class PickupPool : MonoBehaviour
             pickupPools[index].Remove(pickup);
         }
 
+        pickup.ResetDeathDelay();
         return pickup;
     }
 

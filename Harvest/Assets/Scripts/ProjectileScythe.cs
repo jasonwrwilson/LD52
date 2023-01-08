@@ -17,6 +17,11 @@ public class ProjectileScythe : ProjectileBehaviour
     {
         base.Update();
 
+        if (isDead)
+        {
+            return;
+        }
+
         Vector3 pos = gameObject.transform.position;
 
         float degrees = rotationSpeed * Time.deltaTime * GetSpeedBonus();

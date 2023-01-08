@@ -15,6 +15,13 @@ public class ProjectileBehaviour : MonoBehaviour
 
     protected InventoryManager inventoryManager;
 
+    [SerializeField] protected Animator spriteAnimator;
+
+    [SerializeField] protected AudioSource fireSound;
+    [SerializeField] protected AudioSource collisionSound;
+
+    protected bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +64,7 @@ public class ProjectileBehaviour : MonoBehaviour
         if (enemy != null && !enemy.IsDead())
         {
             enemy.TakeDamage(damage * GetDamageBonus());
-            KillProjectile();
+            Death();
         }
     }
 
@@ -69,6 +76,9 @@ public class ProjectileBehaviour : MonoBehaviour
     public void ResetLifeTime()
     {
         remainingLifeTime = lifeTime;
+        isDead = false;
+        spriteAnimator.SetBool("Idling", true);
+        spriteAnimator.SetBool("Dead", false);
     }
 
     protected virtual float GetDamageBonus()
@@ -79,5 +89,28 @@ public class ProjectileBehaviour : MonoBehaviour
     protected virtual float GetSpeedBonus()
     {
         return 1.0f;
+    }
+
+    public void PlayFireSound()
+    {
+        fireSound.Play();
+    }
+
+    protected void Death()
+    {
+        Debug.Log("Dead");
+        isDead = true;
+        spriteAnimator.SetBool("Idling", false);
+        spriteAnimator.SetBool("Dead", true);
+        collisionSound.Play();
+    }
+
+    public void DeathAnimationFinished()
+    {
+        Debug.Log("Death Animation Finished Event");
+        if(isDead)
+        {
+            KillProjectile();
+        }
     }
 }
