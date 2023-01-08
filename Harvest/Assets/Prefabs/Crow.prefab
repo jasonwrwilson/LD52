@@ -99,10 +99,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteAnimator: {fileID: 4606873267732795148}
   speed: 1
-  attackRate: 3
+  attackRate: 1
   damage: 5
-  maxHealth: 5
-  experiencePoints: 5
+  maxHealth: 10
+  experiencePoints: 3
 --- !u!50 &1003885457990883141
 Rigidbody2D:
   serializedVersion: 4

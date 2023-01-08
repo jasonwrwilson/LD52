@@ -99,9 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteAnimator: {fileID: 5314801795588819691}
   speed: 5
-  attackRate: 5
+  attackRate: 1
   damage: 10
-  maxHealth: 20
+  maxHealth: 50
   experiencePoints: 25
   burrowTime: 10
 --- !u!50 &4278308548373478068

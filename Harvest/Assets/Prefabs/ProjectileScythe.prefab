@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 4
   speed: 2
-  damage: 5
+  damage: 10
   spriteAnimator: {fileID: 1068452787742719346}
   fireSound: {fileID: 6443448126960569857}
   collisionSound: {fileID: 7673721607091358745}

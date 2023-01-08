@@ -153,7 +153,7 @@ public class InventoryManager : MonoBehaviour
 
     public int NextPlayerLevelExperienceRequirement()
     {
-        return GetPlayerLevel() * 100;
+        return GetPlayerLevel() * 10;
     }
 
     public int GetPlayerLevel()

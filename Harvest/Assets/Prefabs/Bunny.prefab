@@ -100,8 +100,8 @@ MonoBehaviour:
   spriteAnimator: {fileID: 5347113612455884221}
   speed: 2
   attackRate: 1
-  damage: 5
-  maxHealth: 10
+  damage: 10
+  maxHealth: 20
   experiencePoints: 10
   stopTime: 1
   minBetweenStopsTime: 1

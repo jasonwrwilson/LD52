@@ -28,7 +28,7 @@ public class GameOverPanel : MonoBehaviour
     {
         scoreText.text = inventoryManager.GetHarvestAmount().ToString();
 
-        if (inventoryManager.GetHarvestAmount() >= inventoryManager.GetHarvestAmount())
+        if (inventoryManager.GetHarvestAmount() >= inventoryManager.GetHighHarvestAmount())
         {
             highscoreLabel.SetActive(true);
         }
