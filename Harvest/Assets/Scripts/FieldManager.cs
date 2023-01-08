@@ -180,6 +180,15 @@ public class FieldManager : MonoBehaviour
 
     public bool InWaterRange(Vector2 pos)
     {
-        return Vector2.SqrMagnitude(pos - scarecrowTileLocation) < 2 * 2;
+        InventoryManager inventoryManager = gameObject.GetComponent<InventoryManager>();
+
+        if (inventoryManager.GetSprinklerRange() > 0)
+        {
+            return Vector2.SqrMagnitude(pos - scarecrowTileLocation) < inventoryManager.GetSprinklerRange() * inventoryManager.GetSprinklerRange();
+        }
+        else
+        {
+            return false;
+        }
     }
 }

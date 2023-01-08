@@ -11,6 +11,9 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float maxHealth;
     protected float health;
+    [SerializeField] protected int experiencePoints;
+
+
     protected EnemyManager enemyManager;
     protected EnemyPool enemyPool;
     protected int poolIndex;
@@ -53,8 +56,14 @@ public class EnemyBehaviour : MonoBehaviour
         health = h;
         if (health <= 0)
         {
-            ReturnToPool();
+            Death();
         }
+    }
+
+    private void Death()
+    {
+        enemyManager.SpawnExperiencePickups(gameObject.transform.position, experiencePoints);
+        ReturnToPool();
     }
 
     public void ResetHealth()

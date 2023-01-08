@@ -13,6 +13,8 @@ public class ProjectileBehaviour : MonoBehaviour
     protected ProjectilePool projectilePool;
     protected int poolIndex;
 
+    protected InventoryManager inventoryManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,13 +45,18 @@ public class ProjectileBehaviour : MonoBehaviour
         poolIndex = index;
     }
 
+    public void SetInventoryManager(InventoryManager inv)
+    {
+        inventoryManager = inv;
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         EnemyBehaviour enemy = collision.gameObject.GetComponent<EnemyBehaviour>();
 
         if (enemy != null && !enemy.IsDead())
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage * GetDamageBonus());
             KillProjectile();
         }
     }
@@ -62,5 +69,15 @@ public class ProjectileBehaviour : MonoBehaviour
     public void ResetLifeTime()
     {
         remainingLifeTime = lifeTime;
+    }
+
+    protected virtual float GetDamageBonus()
+    {
+        return 1.0f;
+    }
+
+    protected virtual float GetSpeedBonus()
+    {
+        return 1.0f;
     }
 }

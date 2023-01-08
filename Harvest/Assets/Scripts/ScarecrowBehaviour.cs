@@ -10,6 +10,9 @@ public class ScarecrowBehaviour : MonoBehaviour
     private Vector3 targetPosition;
     [SerializeField] private float hopHeight;
     [SerializeField] private FieldManager fieldManager;
+    [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private GameObject sprinkler;
+    private bool sprinklerActive = false;
     
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,12 @@ public class ScarecrowBehaviour : MonoBehaviour
             {
                 fieldManager.RegisterScarecrowLocation(pos.x, pos.y - 1);
             }
+        }
+
+        if (!sprinklerActive && inventoryManager.GetSprinklerRange() > 0)
+        {
+            sprinklerActive = true;
+            sprinkler.SetActive(true);
         }
     }
 
@@ -88,5 +97,10 @@ public class ScarecrowBehaviour : MonoBehaviour
     public bool IsMoving()
     {
         return remainingMoveTime > 0;
+    }
+
+    public InventoryManager GetInventoryManager()
+    {
+        return inventoryManager;
     }
 }

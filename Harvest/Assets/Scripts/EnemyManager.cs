@@ -44,4 +44,9 @@ public class EnemyManager : MonoBehaviour
     {
         return gameObject.GetComponent<FieldManager>().FindClosestCrop(pos);
     }
+
+    public void SpawnExperiencePickups(Vector3 pos, int xp)
+    {
+        gameObject.GetComponent<PickupManager>().SpawnExeriencePickups(pos, xp);
+    }
 }

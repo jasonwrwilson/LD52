@@ -33,6 +33,7 @@ public class ProjectilePool : MonoBehaviour
             Debug.Log("Create a projectile");
             projectile = Instantiate(projectilePrefabs[index], pos, Quaternion.identity);
             projectile.SetPool(this, index);
+            projectile.SetInventoryManager(gameObject.GetComponent<ScarecrowBehaviour>().GetInventoryManager());
         }
         else
         {

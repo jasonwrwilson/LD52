@@ -8,24 +8,24 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField] private float scytheSpawnTime;
     private float nextScytheSpawnTime;
 
-    [SerializeField] private int startingScytheCount;
-    private int scytheCount;
-
     [SerializeField] private Vector2 projectileOffset;
+
+    private InventoryManager inventoryManager;
 
     // Start is called before the first frame update
     void Start()
     {
         nextScytheSpawnTime = scytheSpawnTime;
-        scytheCount = startingScytheCount;
         
-        projectilePool = gameObject.GetComponent<ProjectilePool>();        
+        projectilePool = gameObject.GetComponent<ProjectilePool>();
+
+        inventoryManager = gameObject.GetComponent<ScarecrowBehaviour>().GetInventoryManager();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (nextScytheSpawnTime > 0 && scytheCount > 0)
+        if (nextScytheSpawnTime > 0 && inventoryManager.GetScytheCount() > 0)
         {
             nextScytheSpawnTime -= Time.deltaTime;
             if (nextScytheSpawnTime <= 0)
@@ -51,6 +51,28 @@ public class ProjectileManager : MonoBehaviour
         Vector2 mouseDirection = new Vector2(mousePosition.x - firePosition.x, mousePosition.y - firePosition.y);
         mouseDirection.Normalize();
         projectile.SetDirection(mouseDirection);
+
+        if (inventoryManager.GetStoneSpreadCount() > 0)
+        {
+            for(int i = 0; i < inventoryManager.GetStoneSpreadCount(); i++ )
+            {
+                Vector2 direction = mouseDirection;
+
+                float degrees = 5 * i * (-1 ^ i);
+
+                float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+                float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+                float tx = direction.x;
+                float ty = direction.y;
+
+                direction.x = (cos * tx) - (sin * ty);
+                direction.y = (sin * tx) + (cos * ty);
+
+                ProjectileBehaviour spreadProjectile = projectilePool.GetProjectile(0, firePosition);
+                spreadProjectile.SetDirection(direction);
+            }
+        }
     }
 
     public void FireScythe()
@@ -61,13 +83,13 @@ public class ProjectileManager : MonoBehaviour
 
         float randomAngle = Random.Range(0, 360);
         
-        for (int i = 0; i < scytheCount; i++)
+        for (int i = 0; i < inventoryManager.GetScytheCount(); i++)
         {
             //spawn scythe
             ProjectileBehaviour projectile = projectilePool.GetProjectile(1, firePosition);
 
             //random direction
-            float angleInRadians = (randomAngle + i * (360 / scytheCount)) * Mathf.Deg2Rad;
+            float angleInRadians = (randomAngle + i * (360 / inventoryManager.GetScytheCount())) * Mathf.Deg2Rad;
             projectile.SetDirection(new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)));
         }
     }

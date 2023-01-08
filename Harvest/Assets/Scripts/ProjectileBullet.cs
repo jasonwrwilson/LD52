@@ -16,10 +16,20 @@ public class ProjectileBullet : ProjectileBehaviour
         base.Update();
         
         Vector3 pos = gameObject.transform.position;
-        pos.x = pos.x + direction.x * speed * Time.deltaTime;
-        pos.y = pos.y + direction.y * speed * Time.deltaTime;
+        pos.x = pos.x + direction.x * speed * Time.deltaTime * GetSpeedBonus();
+        pos.y = pos.y + direction.y * speed * Time.deltaTime * GetSpeedBonus();
 
         gameObject.transform.position = pos;
+    }
+
+    protected override float GetDamageBonus()
+    {
+        return inventoryManager.GetStoneDamageBonus();
+    }
+
+    protected override float GetSpeedBonus()
+    {
+        return inventoryManager.GetStoneSpeedBonus(); ;
     }
 
 }

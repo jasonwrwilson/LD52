@@ -23,8 +23,6 @@ public class LivesCounter : MonoBehaviour
     {
         int lives = inventoryManager.GetLivesCount();
 
-        Debug.Log(lives);
-
         for (int i = 0; i < icons.Length; i++)
         {
             icons[i].SetFull(i < lives);

@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 884768818}
   - component: {fileID: 884768819}
   - component: {fileID: 884768820}
+  - component: {fileID: 1458781823078305542}
+  - component: {fileID: -2118701644320960257}
+  - component: {fileID: 9213558702920482478}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -79,9 +82,41 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onExperienceChange:
+    m_PersistentCalls:
+      m_Calls: []
   onLivesCountChange:
     m_PersistentCalls:
       m_Calls: []
+  upgradeNames:
+  - Stone Damage
+  - Stone Speed
+  - Spread Stone Toss
+  - Add Scythe
+  - Scythe Damage
+  - Scythe Speed
+  - Sprinkler Range
+  - Regain Lost Crop
+  upgradeDescription:
+  - Increase the damage of your tossed Stones.
+  - Increase the speed of your tossed Stones.
+  - Add additional stones to your Stone toss.
+  - Add additional scythes to your Twirling Scythe throw.
+  - Increase the damage of your Twirling Scythes.
+  - Increase the speed of your Twirling Scythes.
+  - Increase the range of the Sprinkler
+  - Regain a Crop which has been lost.
+  upgradeIcons:
+  - {fileID: 21300000, guid: e112fd1b02fa06e4297e6811ccbb5ab6, type: 3}
+  - {fileID: 21300000, guid: 02dcdf81f7c84eb48b0632961cba6c99, type: 3}
+  - {fileID: 21300000, guid: caf343d8145cea1479f5a8ad7d4e176d, type: 3}
+  - {fileID: 21300000, guid: e112fd1b02fa06e4297e6811ccbb5ab6, type: 3}
+  - {fileID: 21300000, guid: fcac4d21c90633b41bba762a7af19323, type: 3}
+  - {fileID: 21300000, guid: fcac4d21c90633b41bba762a7af19323, type: 3}
+  - {fileID: 21300000, guid: fcac4d21c90633b41bba762a7af19323, type: 3}
+  - {fileID: 21300000, guid: fcac4d21c90633b41bba762a7af19323, type: 3}
+  upgradeStartingLevels: 0100000000000000000000000000000000000000000000000000000000000000
+  upgradePrerequisite: 0000000000000000000000000000000003000000030000000000000000000000
 --- !u!114 &884768819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +146,44 @@ MonoBehaviour:
   - {fileID: 3209733628850648574, guid: 6f65c7f38a5cb1040b9f241b5c5ce211, type: 3}
   - {fileID: 7370843465824014463, guid: 7d34f477a96ccce449d565d80d11ad42, type: 3}
   - {fileID: 4022862697677832818, guid: 297b4e778f35fcc47bb7519f1f3d5c05, type: 3}
+--- !u!114 &1458781823078305542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828582025670028237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e87b5ccdae767f45bffc48794fec9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2118701644320960257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828582025670028237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41017ae7f9d8b5141921d0bee7a3fc9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupPrefabs:
+  - {fileID: 5354504235127474203, guid: 0b84b81688a2dc742bf0f64f392f2c17, type: 3}
+  - {fileID: 6836595520783365865, guid: fea5b387d355f3d4497f07a70f67a4e2, type: 3}
+  - {fileID: 6607436820404509589, guid: 57ba305f3cf19f448bc6f9fcc208a654, type: 3}
+--- !u!114 &9213558702920482478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828582025670028237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b257c81cbd72447a6806a879cf1a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelUpPanel: {fileID: 0}

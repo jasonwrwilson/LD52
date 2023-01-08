@@ -102,6 +102,7 @@ MonoBehaviour:
   attackRate: 1
   damage: 5
   maxHealth: 10
+  experiencePoints: 10
   stopTime: 1
   minBetweenStopsTime: 1
   maxBetweenStopsTime: 2

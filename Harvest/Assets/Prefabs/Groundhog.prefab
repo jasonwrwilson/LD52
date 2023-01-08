@@ -102,6 +102,7 @@ MonoBehaviour:
   attackRate: 5
   damage: 10
   maxHealth: 20
+  experiencePoints: 25
   burrowTime: 10
 --- !u!50 &4278308548373478068
 Rigidbody2D:
