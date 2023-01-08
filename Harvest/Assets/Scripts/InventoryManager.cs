@@ -8,15 +8,15 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private int maxLives;
     private int lives;
     
-    public UnityEvent onHarvestCountChange = new UnityEvent();
     public UnityEvent onExperienceChange = new UnityEvent();
     public UnityEvent onLivesCountChange = new UnityEvent();
+    public UnityEvent onScoreChange = new UnityEvent();
 
     private int playerExperience;
     private int playerLevel = 1;
     
     private int harvestAmount = 0;
-    private int harvestLevel = 1;
+    private int highHarvestAmount = 0;
 
     [SerializeField] private string[] upgradeNames;
     [SerializeField] private string[] upgradeDescription;
@@ -45,6 +45,10 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadRecord();
+
+        SetHarvestAmount(0);
+        
         SetLivesCount(maxLives);
         SetExperience(0);
 
@@ -75,6 +79,12 @@ public class InventoryManager : MonoBehaviour
     {
         lives = l;
         onLivesCountChange.Invoke();
+
+        if(lives <= 0)
+        {
+            SaveRecord();
+            gameObject.GetComponent<UIManager>().OpenGameOverPanel();
+        }
     }
 
     public int GetLivesCount()
@@ -95,12 +105,11 @@ public class InventoryManager : MonoBehaviour
     public void SetHarvestAmount(int h)
     {
         harvestAmount = h;
-        if (harvestAmount >= NextHarvestLevelAmount())
+        if (harvestAmount > highHarvestAmount)
         {
-            harvestAmount -= NextHarvestLevelAmount();
-            //LevelUp();
+            highHarvestAmount = harvestAmount;
         }
-        onHarvestCountChange.Invoke();
+        onScoreChange.Invoke();
     }
 
     public int GetHarvestAmount()
@@ -108,19 +117,9 @@ public class InventoryManager : MonoBehaviour
         return harvestAmount;
     }
 
-    public int NextHarvestLevelAmount()
+    public int GetHighHarvestAmount()
     {
-        return GetHarvestLevel() * 100;
-    }
-
-    public float GetHarvestLevelPercent()
-    {
-        return (float)GetHarvestAmount() / (float)NextHarvestLevelAmount();
-    }
-
-    public int GetHarvestLevel()
-    {
-        return harvestLevel;
+        return highHarvestAmount;
     }
 
     public void EarnExperience(int xp)
@@ -291,6 +290,21 @@ public class InventoryManager : MonoBehaviour
         else
         {
             return 0;
+        }
+    }
+    private void SaveRecord()
+    {
+        PlayerPrefs.SetInt("Highscore", highHarvestAmount);
+        PlayerPrefs.Save();
+        Debug.Log("Game data saved!");
+    }
+
+    private void LoadRecord()
+    {
+        if (PlayerPrefs.HasKey("Highscore"))
+        {
+            highHarvestAmount = PlayerPrefs.GetInt("Highscore");
+            Debug.Log("Game data saved!");
         }
     }
 }

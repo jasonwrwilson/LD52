@@ -24,11 +24,6 @@ public class HarvestCounter : MonoBehaviour
 
     public void UpdateHarvestCount()
     {
-        countText.text = "Level " + inventoryManager.GetHarvestLevel().ToString();
 
-        RectTransform countMeterTransform = countMeter.GetComponent<RectTransform>();
-        RectTransform countMeterGreyTransform = countMeterGrey.GetComponent<RectTransform>();
-
-        countMeterTransform.sizeDelta = new Vector2(countMeterGreyTransform.sizeDelta.x * inventoryManager.GetHarvestLevelPercent(), countMeterGreyTransform.sizeDelta.y);
     }
 }

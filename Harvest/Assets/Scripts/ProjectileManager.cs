@@ -5,6 +5,10 @@ using UnityEngine;
 public class ProjectileManager : MonoBehaviour
 {
     private ProjectilePool projectilePool;
+
+    [SerializeField] private float stoneCooldown;
+    private float remainingStoneCooldown;
+
     [SerializeField] private float scytheSpawnTime;
     private float nextScytheSpawnTime;
 
@@ -15,6 +19,7 @@ public class ProjectileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        remainingStoneCooldown = 0;
         nextScytheSpawnTime = scytheSpawnTime;
         
         projectilePool = gameObject.GetComponent<ProjectilePool>();
@@ -25,6 +30,11 @@ public class ProjectileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (remainingStoneCooldown > 0)
+        {
+            remainingStoneCooldown -= Time.deltaTime;
+        }
+        
         if (nextScytheSpawnTime > 0 && inventoryManager.GetScytheCount() > 0)
         {
             nextScytheSpawnTime -= Time.deltaTime;
@@ -39,38 +49,47 @@ public class ProjectileManager : MonoBehaviour
 
     public void FireBullet()
     {
-        //fire position
-        Vector3 scarecrowPosition = gameObject.transform.position;
-        Vector3 firePosition = new Vector3(scarecrowPosition.x + projectileOffset.x, scarecrowPosition.y + projectileOffset.y, 0);
-        
-        //spawn bullets
-        ProjectileBehaviour projectile = projectilePool.GetProjectile(0, firePosition);
-
-        //toward mouse pointer
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mouseDirection = new Vector2(mousePosition.x - firePosition.x, mousePosition.y - firePosition.y);
-        mouseDirection.Normalize();
-        projectile.SetDirection(mouseDirection);
-
-        if (inventoryManager.GetStoneSpreadCount() > 0)
+        if (remainingStoneCooldown > 0)
         {
-            for(int i = 0; i < inventoryManager.GetStoneSpreadCount(); i++ )
+            return;
+        }
+        else
+        {
+            remainingStoneCooldown = stoneCooldown;
+            
+            //fire position
+            Vector3 scarecrowPosition = gameObject.transform.position;
+            Vector3 firePosition = new Vector3(scarecrowPosition.x + projectileOffset.x, scarecrowPosition.y + projectileOffset.y, 0);
+
+            //spawn bullets
+            ProjectileBehaviour projectile = projectilePool.GetProjectile(0, firePosition);
+
+            //toward mouse pointer
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mouseDirection = new Vector2(mousePosition.x - firePosition.x, mousePosition.y - firePosition.y);
+            mouseDirection.Normalize();
+            projectile.SetDirection(mouseDirection);
+
+            if (inventoryManager.GetStoneSpreadCount() > 0)
             {
-                Vector2 direction = mouseDirection;
+                for (int i = 0; i < inventoryManager.GetStoneSpreadCount(); i++)
+                {
+                    Vector2 direction = mouseDirection;
 
-                float degrees = 5 * i * (-1 ^ i);
+                    float degrees = 10 * ((i + 2) / 2) * (1 - (i % 2) * 2);
 
-                float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-                float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+                    float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+                    float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
 
-                float tx = direction.x;
-                float ty = direction.y;
+                    float tx = direction.x;
+                    float ty = direction.y;
 
-                direction.x = (cos * tx) - (sin * ty);
-                direction.y = (sin * tx) + (cos * ty);
+                    direction.x = (cos * tx) - (sin * ty);
+                    direction.y = (sin * tx) + (cos * ty);
 
-                ProjectileBehaviour spreadProjectile = projectilePool.GetProjectile(0, firePosition);
-                spreadProjectile.SetDirection(direction);
+                    ProjectileBehaviour spreadProjectile = projectilePool.GetProjectile(0, firePosition);
+                    spreadProjectile.SetDirection(direction);
+                }
             }
         }
     }
